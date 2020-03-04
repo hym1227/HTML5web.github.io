@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 430px;
+            height: 26px;
+            font-size: 0.8em;
+        }
+        
+        span {
+            color: red;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>学生信息</h1>
+    <form action="#" method="post">
+        <fieldset style="width:470px;height:600px;">
+            <legend style="color:red ;">学生档案</legend>
+            姓名：<br/>
+            <input type="text" placeholder="请输入姓名" name="name" required>
+            <span>*</span>
+            <br/>学号： <br/>
+            <input type="text" name="no" placeholder="请输入学号" required>
+            <span>*</span>
+            <br/> 手机号码：<br/>
+            <input type="tel" name="telphone" placeholder="请输入手机号" required>
+            <span>*</span>
+            <br/> 邮箱地址：<br/>
+            <input type="email" name="email" placeholder="请输入邮箱地址" required>
+            <span>*</span>
+            <br/> 录取学校：<br/>
+            <input type="text" list="school" />
+            <datalist id="school">
+                <option value="河北师范大学"/>
+                <option value="河北科技大学"/>
+                <option value="北京大学"/>
+                <option value="武汉大学（武汉加油）"/>
+            </datalist>
+            <br/> 入学成绩：<br/>
+            <input type="text" name="grade" />
+            <br/> 入学时间:<br/>
+            <input type="date" name="time" />
+            <!-- <input type="button" value="提交" id="btn1" /> -->
+            <button id="btn1" style="width:430px;height:25px;margin-top:15px;">提交</button>
+        </fieldset>
+    </form>
+
+</body>
+
+</html>
