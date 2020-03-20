@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .col {
+            width: 18px;
+            height: 30px;
+            border: 1px solid white;
+            float: left;
+            margin-top: 35px;
+            margin-left: 5px;
+        }
+        
+        #word {
+            width: 650px;
+            height: 80px;
+            margin-top: 30px;
+            margin-left: 80px;
+            font-size: grey;
+            line-height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset style="width:800px;height:400px;margin-left:300px;">
+        <legend style="color:red;font-size:2em;font-weight:bloder;">网页换肤</legend>
+        <div style="margin-top:100px;margin-left:50px;width:700px;height:100px;border:2px solid grey;">
+            <div class="col" style="background-color:red;  "></div>
+            <div class="col" style="background-color:hotpink; "></div>
+            <div class="col" style="background-color:lawngreen; "></div>
+            <div class="col" style="background-color:lightsalmon; "></div>
+            <div class="col" style="background-color:yellow; "></div>
+            <div class="col" style="background-color:thistle; "></div>
+        </div>
+        <div id="word">localStorage将数据保存在客户端本地的硬件设备中，即使浏览器被关闭了，该数据仍然存在，下次打开浏览器访问网站时仍可继续使用。</div>
+    </fieldset>
+
+</body>
+<script>
+    if (localStorage.pagecount)  { 
+        localStorage.pagecount = Number(localStorage.pagecount) + 1; 
+    } else  { 
+        localStorage.pagecount = 1; 
+    }
+    var colArr = document.getElementsByClassName("col");
+    var word = document.getElementById("word");
+    if (localStorage.pagecount == 1) {
+        word.style.backgroundColor = "red";
+        colArr[0].style.marginTop = "25px";
+        localStorage.setItem("i", 0);
+    } else {
+        word.style.backgroundColor = localStorage.getItem("color");
+        colArr[localStorage.getItem("i")].style.marginTop = "25px";
+        for (var i = 0; i < colArr.length; i++) {
+            ! function(i) {
+                colArr[i].onclick = function() {
+                    for (var j = 0; j < 6; j++) {
+                        colArr[j].style.marginTop = "35px";
+                    }
+                    colArr[i].style.marginTop = "25px";
+                    if (!window.localStorage) {
+                        alert("浏览器不支持localstorage");
+                        return false;
+                    } else {
+                        localStorage.setItem("color", colArr[i].style.backgroundColor);
+                        localStorage.setItem("i", i);
+                        word.style.backgroundColor = localStorage.getItem("color");
+                        colArr[localStorage.getItem("i")].style.marginTop = "25px";
+                    }
+                }
+            }(i);
+        }
+    }
+</script>
+
+</html>
