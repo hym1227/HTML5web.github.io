@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>zuoye</title>
+    <style>
+        body {
+            background-image: url(images/bg3.jpg)
+        }
+        
+        ul.bg li {
+            display: inline;
+        }
+        
+        ul.bg img {
+            display: block;
+            height: 130px;
+            margin-bottom: 15px;
+        }
+        
+        ul.bg a {
+            background: #fff;
+            display: inline;
+            float: left;
+            margin: 0px 0px 27px 30px;
+            padding: 10px 10px 15px;
+            color: #333;
+            font-size: 18px;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+            transform: rotate(-2deg);
+            transition: transform 0.2s linear;
+        }
+        
+        ul.bg a:after {
+            content: attr(title);
+        }
+        
+        ul.bg li:nth-child(2n) a {
+            position: relative;
+            top: -5px;
+            transform: rotate(-10deg);
+        }
+        
+        ul.bg li a:hover {
+            transform: scale(1.25);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 5;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="bg">
+        <li>
+            <a href="1" title="相识"><img src="images/11.jpg"></a>
+        </li>
+        <li>
+            <a href="2" title="凝视"><img src="images/22.jpg"></a>
+        </li>
+        <li>
+            <a href="3" title="甜睡"><img src="images/33.jpg"></a>
+        </li>
+        <li>
+            <a href="4" title="逗乐"><img src="images/44.jpg"></a>
+        </li>
+        <li>
+            <a href="5" title="奔跑"><img src="images/55.jpg"></a>
+        </li>
+        <li>
+            <a href="6" title="漠视"><img src="images/66.jpg"></a>
+        </li>
+    </ul>
+</body>
