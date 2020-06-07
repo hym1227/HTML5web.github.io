@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
+        body {
+            background: #eee;
+        }
+        
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        #img1 {
+            margin-left: 200px;
+        }
+        
+        .box {
+            width: 1000px;
+            height: 500px;
+            border: 1px solid white;
+            margin: 15px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slider {
+            width: 10000px;
+            position: absolute;
+            left: -1000px;
+        }
+        
+        .slide {
+            width: 1000px;
+            overflow: hidden;
+            float: left;
+        }
+        
+        .slide>img {
+            width: 1000px;
+            height: 500px;
+        }
+        
+        .box>span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            text-align: center;
+            cursor: pointer;
+            top: 195px;
+            line-height: 50px;
+            background: grey;
+            font-size: 30px;
+            position: absolute;
+            opacity: 0.3;
+            border-radius: 100%;
+        }
+        
+        #left {
+            left: -6px;
+        }
+        
+        #right {
+            right: -6px;
+        }
+        
+        .nav {
+            position: absolute;
+            left: 50px;
+            bottom: 20px;
+        }
+        
+        .nav>li {
+            float: left;
+            width: 10px;
+            height: 10px;
+            background: #ccc;
+            cursor: pointer;
+            margin: 0 10px;
+            border-radius: 50%;
+        }
+        
+        #active {
+            background: white;
+            color: rgb(206, 199, 199);
+        }
+    </style>
+    <script src="animate.js"></script>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="slider" id="slider">
+            <div class="slide"><img src="image/bg8.jpg" alt=""></div>
+            <div class="slide"><img src="image/bg1.jpg" alt=""></div>
+            <div class="slide"><img src="image/bg2.jpg" alt=""></div>
+            <div class="slide"><img src="image/bg3.jpg" alt=""></div>
+            <div class="slide"><img src="image/bg4.jpg" alt=""></div>
+            <div class="slide"><img src="image/bg5.jpg" alt=""></div>
+            <div class="slide"><img src="image/bg6.jpg" alt=""></div>
+            <div class="slide"><img src="image/bg7.jpg" alt=""></div>
+            <div class="slide"><img src="image/bg8.jpg" alt=""></div>
+            <div class="slide"><img src="image/bg1.jpg" alt=""></div>
+        </div>
+        <span id="left">< </span>
+        <span id="right">></span>
+        <ul class="nav" id="nav">
+            <li id="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    </div>
+</body>
+<script>
+    var box = document.getElementById("box");
+    var navArr = document.getElementById("nav").children;
+    var slider = document.getElementById("slider");
+    var left = document.getElementById("left");
+    var right = document.getElementById("right");
+    var Warn = document.getElementById("Warn");
+    var index = 1;
+    var timer;
+    var isMoving = false;
+
+    function next() {
+        index++;
+        navChange();
+        animate(slider, {
+            left: -1000 * index
+        }, function() {
+            if (index === 9) {
+                slider.style.left = "-1200px";
+                index = 1;
+            }
+        });
+    }
+
+    function prev() {
+        index--;
+        navChange();
+        animate(slider, {
+            left: -1000 * index
+        }, function() {
+            if (index === 0) {
+                slider.style.left = "-8000px";
+                index = 8;
+            }
+        });
+    }
+    var timer = setInterval(next, 3000);
+    //鼠标划上的时间
+    slider.onmouseover = function() {
+
+            clearInterval(timer);
+        }
+        //鼠标离开事件
+    slider.onmouseout = function() {
+        animate(left, {
+            opacity: 30
+        });
+        animate(right, {
+            opacity: 30
+        });
+        timer = setInterval(next, 3000);
+    }
+    left.onmouseover = function() {
+        animate(left, {
+            opacity: 70
+        });
+        animate(right, {
+            opacity: 70
+        });
+    }
+    right.onmouseover = function() {
+        animate(left, {
+            opacity: 70
+        });
+        animate(right, {
+            opacity: 70
+        });
+    }
+    left.onmouseout = function() {
+        animate(left, {
+            opacity: 30
+        });
+        animate(right, {
+            opacity: 30
+        });
+    }
+    right.onmouseout = function() {
+        animate(left, {
+            opacity: 30
+        });
+        animate(right, {
+            opacity: 30
+        });
+    }
+    right.onclick = next;
+    left.onclick = prev;
+
+    for (var i = 0; i < navArr.length; i++) {
+        navArr[i].idx = i;
+        navArr[i].onmouseover = function() {
+            index = this.idx + 1;
+            navChange();
+            // clearInterval(timer);
+            animate(slider, {
+                left: -1000 * index
+            })
+        }
+    }
+    //小按钮背景色
+    function navChange() {
+        console.log(index);
+        for (var i = 0; i < navArr.length; i++) {
+            navArr[i].setAttribute('id', ' ');
+        }
+        if (index === 9) {
+            navArr[0].setAttribute("id", 'active');
+        } else if (index === 0) {
+            navArr[7].setAttribute('id', 'active');
+        } else {
+            navArr[index - 1].setAttribute('id', 'active');
+        }
+    }
+</script>
+
+</html>

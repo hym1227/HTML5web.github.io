@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // const data = [
+
+    //     {
+    //         id: 1,
+    //         name: "男装",
+    //         hot: true
+    //     },
+
+    //     {
+    //         id: 2,
+    //         name: "女装",
+    //         hot: false
+    //     },
+
+    //     {
+    //         id: 3,
+    //         name: "鞋包",
+    //         hot: true
+    //     },
+
+    //     {
+    //         id: 4,
+    //         name: "饮料",
+    //         hot: false
+    //     }
+
+    // ]
+    // 17
+    // var result = data.map(function(item, index, array) {
+    //     var newArr = {
+    //         id: item.id,
+    //         name: item.name,
+    //         hot: item.hot ? "最新" : "不新"
+    //     }
+    //     return newArr
+    // })
+    // console.log(result);
+
+    // 18
+    const flatten = (arr) => {
+
+        var newarr = arr.join(',').split(",");
+        //字符串类型转化为数字类型
+        console.log(newarr.map(function(e) {
+            return Number(e)
+        }))
+
+
+
+
+    }
+    flatten([1, [
+        [2], 3, 4
+    ], 5]); //[1, 2, 3, 4, 5]
+</script>
+
+</html>
